@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home | Verificate</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+
+    <style>
+        .drop-zone {
+            max-width: 100%;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            border: 4px dashed #009578;
+            border-radius: 10px;
+        }
+
+        .drop-zone--over {
+            border-style: solid;
+        }
+
+        .drop-zone__input {
+            display: none;
+        }
+
+        .drop-zone__thumb {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #cccccc;
+            background-size: cover;
+            position: relative;
+        }
+
+        .drop-zone__thumb::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_sidebar -->
+                
+        <%- include('sidebar'); %>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_navbar -->
+            <%- include('navbar'); %>
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>My Documents</h4>
+                                </div>
+                                <div class="card-body">
+                                    <!-- <form method="POST" action="/" class="needs-validation" novalidate>
+                                        <table class="table table-bordered table-dark">
+                                            <thead>
+                                                <tr style="border-top: 1px solid #454d55;">
+                                                    <th></th>
+                                                    <th>Document</th>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% data.documents.forEach((item)=>{%>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check">
+                                                            <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" id="<%=item.no%>" name="<%=item.no%>">
+                                                            </label>
+                                                        </div>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<%=item.view%>" target="_blank">View Document</a>
+                                                        </td>
+                                                        <td>
+                                                            <%=item.name%>
+                                                        </td>
+                                                        <td>
+                                                            <%=item.description%>
+                                                        </td>
+                                                    </tr>
+                                                <%});%>
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <buton class="btn btn-primary" style="float: right;" type="submit">Verify</buton>
+                                            </div>
+                                        </div>
+                                    </form> -->
+                                    <form method="POST" action="/bc-upload" class="needs-validation" novalidate>
+                                        <table class="table table-bordered table-dark">
+                                            <thead>
+                                                <tr style="border-top: 1px solid #454d55;">
+                                                    <th></th>
+                                                    <th>Document</th>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% data.documents.forEach((item)=>{%>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check">
+                                                            <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" id="<%=item.unique%>" name="<%=item.unique%>">
+                                                            </label>
+                                                        </div>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<%=item.view%>" target="_blank">View Document</a>
+                                                        </td>
+                                                        <td>
+                                                            <%=item.name%>
+                                                        </td>
+                                                        <td>
+                                                            <%=item.description%>
+                                                        </td>
+                                                    </tr>
+                                                <%});%>
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-12">
+                                          <button type="submit" style="float:right;" class="btn btn-primary btn-block enter-btn">Verify</button>
+                                          </div>
+                                        </div>
+                                      </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © D12B
+                            <script>document.write(new Date().getFullYear())</script>
+                        </span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/select2/select2.min.js"></script>
+    <script src="vendors/progressbar.js/progressbar.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="js/select2.js"></script>
+    <!-- End custom js for this page -->
+
+</body>
+
+</html>

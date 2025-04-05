@@ -1,0 +1,60 @@
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a href="/dashboard" class="app-brand-link">
+            <!-- <span class="app-brand-logo demo">
+          <img src="img/favicon/logo.png" alt="img/favicon/logo.png" height="43" />
+        </span> -->
+            <span class="app-brand-logo demo">
+                <img src="img/favicon/favicon.ico" alt="img/favicon/favicon.ico" height="43" />
+            </span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2"
+                style="text-transform: uppercase;">VERIFICATE</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a href="/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+
+        <% if (data.role == 'verifier') { %>
+            <li class="menu-item" id="toastActive3">
+                <a href="/verify-documents-page" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-file-archive"></i>
+                    <div data-i18n="Analytics">Verify Certificates</div>
+                </a>
+            </li>
+        <% } else if (data.role == 'recruiter') { %>
+            <li class="menu-item" id="toastActive3">
+                <a href="/view-certificate-page" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-file-find"></i>
+                    <div data-i18n="Analytics">View Certificates</div>
+                </a>
+            </li>
+        <% } else { %> 
+            <li class="menu-item" id="toastActive3">
+                <a href="/file-upload-page" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-file"></i>
+                    <div data-i18n="Analytics">Upload Certificates</div>
+                </a>
+            </li>
+        <% } %>
+
+        <li class="menu-item">
+            <a href="/faq" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-question-mark"></i>
+                <div data-i18n="Analytics">FAQ's</div>
+            </a>
+        </li>
+    </ul>
+</aside>

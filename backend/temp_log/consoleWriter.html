@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Run Script Console</title>
+<!-- use local -->
+<!-- <script type='text/javascript' src="js/jquery-3.6.1.js"
+	charset="utf-8"></script> -->
+<!-- -->	
+
+<!-- use external -->
+<script type='text/javascript' charset="utf-8" 
+	src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+ 
+</head>
+<body>
+<!-- <div style="width: 100%; height: 100%">
+		<button id="stop" name="Stop" class="btn" onclick="stopScript(taskID)">Stop Script</button>
+		<hr> -->
+		<iframe id="iframe" width="100%"></iframe> 
+</div>
+<script type="text/javascript">
+// var taskID;
+var logUrl;
+var timer;
+
+$(function() {
+	resize();
+	$(window).resize(resize);
+	
+	// start by accessing the url params
+	// taskID = urlParam('taskID');
+	logUrl = urlParam('logUrl');
+
+	// set iframe url
+	$("#iframe").attr('src', logUrl);
+
+	// start refresh cycle
+	timer = setInterval(checkForUpdate, 2000);
+});
+
+// check if the script is still running and then update the iframe
+function checkForUpdate(last) {
+	$("#iframe")[0].contentWindow.location.reload();
+	if ($('iframe').contents().find('html').html().includes('Uploading successfully completed')) {
+		clearInterval(timer)
+	}
+}
+
+// function stopScript() {
+// 	var data = "";
+
+// 	data = {
+// 		what: "script_console",
+// 		taskID: taskID,
+// 		action: "stop"
+// 	};
+	
+// 	// send session id to server
+// 	try {
+// 		$.ajax({
+// 			url : "lab_session",
+// 			async : false,
+// 			dataType : 'json',
+// 			data : data,
+// 			success : function(result) {
+// 			},
+// 			complete : function() {
+// 			}
+// 		});
+// 	} catch (err) {
+// 	}
+// }
+
+//extract url parameter value
+function urlParam(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (!results) {
+		return 0;
+	}
+	return results[1];
+}
+
+function resize() {
+	width = $(window).innerWidth()-15;
+	height = $(window).innerHeight()-65;
+	$("#iframe").css("height", height + "px");	
+}
+
+</script>
+</body>
+</html>

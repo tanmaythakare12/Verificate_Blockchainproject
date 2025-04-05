@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home | Verificate</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+
+    <style>
+        .drop-zone {
+            max-width: 100%;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            border: 4px dashed #009578;
+            border-radius: 10px;
+        }
+
+        .drop-zone--over {
+            border-style: solid;
+        }
+
+        .drop-zone__input {
+            display: none;
+        }
+
+        .drop-zone__thumb {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #cccccc;
+            background-size: cover;
+            position: relative;
+        }
+
+        .drop-zone__thumb::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_sidebar -->
+        
+        <%- include('sidebar'); %>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_navbar -->
+            <%- include('navbar'); %>
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <form action="update-profile" method="POST" class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-md-4 col-12 mb-4">
+                                <div class="form-group">
+                                <label>Username <span style="color: red;"> *</span></label>
+                                <input type="text" class="form-control p_input" id="username" name="Username" pattern="[a-zA-Z0-9]{3,}" required placeholder="Enter Username" value="<%=data.name%>">
+                                <div class="invalid-feedback">
+                                    Please enter valid username (alphanumeric only)
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12 mb-4">
+                                <div class="form-group">
+                                <label>Email <span style="color: red;"> *</span></label>
+                                <input type="email" class="form-control p_input" id="email" name="Email" pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+" required placeholder="Enter Email" value="<%=data.email%>">
+                                <div class="invalid-feedback">
+                                    Please enter valid email
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12 mb-4">
+                                <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control p_input" id="phoneNo" name="PhoneNo" pattern="[0-9]{10}" placeholder="Enter Phone Number" value="<%=data.phoneNo%>">
+                                <div class="invalid-feedback">
+                                    Please enter valid phone number
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4 col-12 mb-4">
+                                <div class="form-group">
+                                <label>Colleges & Universities Previously Attended <span style="color: red;"> *</span></label>
+                                <select class="js-example-basic-multiple" id="universities" name="Universities" multiple="multiple" required style="width:100%">
+                                    
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select colleges & universities
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                </div>
+                            </div> -->
+                            <div class="col-12 mb-4">
+                                <div class="form-group">
+                                <label>Profile Photo 
+                                    <!-- <span style="color: red;"> *</span> -->
+                                </label>
+                                    <div class="drop-zone" id="drop-zone">
+                                        <span class="drop-zone__prompt">
+                                            <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                                            <br>
+                                            Drop profile photo here
+                                        </span>
+                                        <input type="file" name="File1" id="file1" class="drop-zone__input"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                            <button class="btn btn-primary" style="float: right;" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>My Documents</h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-dark">
+                                        <thead>
+                                            <tr style="border-top: 1px solid #454d55;">
+                                                <th>Sr. No.</th>
+                                                <th>View Document</th>
+                                                <th>Document Hash</th>
+                                                <th>Document Name</th>
+                                                <th>Document Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody><% data.documents.forEach((item)=>{%>
+                                            <tr>
+                                                <td>
+                                                    <%=item.no%>
+                                                </td>
+                                                <td>
+                                                    <a href="<%=item.view%>" target="_blank">View Document</a>
+                                                </td>
+                                                <td>
+                                                    <%=item.hash%>
+                                                </td>
+                                                <td>
+                                                    <%=item.name%>
+                                                </td>
+                                                <td>
+                                                    <%=item.description%>
+                                                </td>
+                                            </tr>
+                                            <%});%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © D12B
+                            <script>document.write(new Date().getFullYear())</script>
+                        </span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/select2/select2.min.js"></script>
+    <script src="vendors/progressbar.js/progressbar.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="js/select2.js"></script>
+    <!-- End custom js for this page -->
+
+    
+    <script>
+        function intializeDragDrop() {
+            /* document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+                console.log(inputElement)
+                const dropZoneElement = inputElement.closest(".drop-zone");
+    
+                dropZoneElement.addEventListener("click", (e) => {
+                    inputElement.click();
+                });
+    
+                inputElement.addEventListener("change", (e) => {
+                    if (inputElement.files.length) {
+                        updateThumbnail(dropZoneElement, inputElement.files[0]);
+                    }
+                });
+    
+                dropZoneElement.addEventListener("dragover", (e) => {
+                    e.preventDefault();
+                    dropZoneElement.classList.add("drop-zone--over");
+                });
+    
+                ["dragleave", "dragend"].forEach((type) => {
+                    dropZoneElement.addEventListener(type, (e) => {
+                        dropZoneElement.classList.remove("drop-zone--over");
+                    });
+                });
+    
+                dropZoneElement.addEventListener("drop", (e) => {
+                    e.preventDefault();
+    
+                    if (e.dataTransfer.files.length) {
+                        inputElement.files = e.dataTransfer.files;
+                        updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                    }
+    
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            }); */
+
+            var inputElement = document.querySelectorAll(".drop-zone__input")[document.querySelectorAll(".drop-zone__input").length - 1]
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        }
+
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            console.log(file.type)
+            if (file.type == 'application/pdf') {
+                const size = Math.round((file.size / 1024));
+                // The size of the file.
+                if (size >= 2048) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                    }
+                }
+                else if (size < 150) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                    }
+                }
+                else {
+
+                    // First time - remove the prompt
+                    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                    }
+                    // First time - there is no thumbnail element, so lets create it
+                    if (!thumbnailElement) {
+                        thumbnailElement = document.createElement("div");
+                        thumbnailElement.classList.add("drop-zone__thumb");
+                        thumbnailElement.style.width = '200px';
+                        thumbnailElement.style.width = '200px';
+                        dropZoneElement.appendChild(thumbnailElement);
+                    }
+                    thumbnailElement.dataset.label = file.name;
+
+                    if (dropZoneElement.querySelector('span')) {
+                        dropZoneElement.querySelector('span').remove();
+                    }
+                    console.log(dropZoneElement.querySelector('input').value)
+                }
+            }
+            else {
+                dropZoneElement.querySelector('input').value = '';
+                if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                    if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                        dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                    }
+                    const promptDiv = document.createElement('span')
+                    promptDiv.class = 'drop-zone__prompt'
+                    promptDiv.innerHTML = `
+                    <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                    console.log(promptDiv)
+                    dropZoneElement.appendChild(promptDiv)
+                }
+                else {
+                    dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                    <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                }
+            }
+        }
+
+        intializeDragDrop();
+    </script>
+
+
+
+</body>
+
+</html>

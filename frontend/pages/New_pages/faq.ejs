@@ -1,0 +1,239 @@
+<!-- window.location.pathname -->
+
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path=""
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>FAQ's | Verificate</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <%- include('new-ui-sidebar'); %>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+          <%- include('new-ui-navbar'); %>
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <h4 class="fw-bold py-3 mb-4">
+                    Frequently Asked Questions (FAQ's)
+                </h4>
+
+              <!-- Accordion -->
+              <!-- <h5 class="mt-4">Accordion</h5> -->
+              <div class="row">
+                <div class="col-md mb-4 mb-md-0">
+                  
+                  <% if (errorMessage.length > 0) { %>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <%=errorMessage%>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                  <% } if (successMessage.length > 0) { %>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                      <%=successMessage%>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                  <% } %>
+                  <div class="accordion mt-3" id="accordionExample">
+                    <div class="card accordion-item active">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button
+                          type="button"
+                          class="accordion-button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#accordionOne"
+                          aria-expanded="true"
+                          aria-controls="accordionOne"
+                        >
+                            What is Verificate?
+                        </button>
+                      </h2>
+
+                      <div
+                        id="accordionOne"
+                        class="accordion-collapse collapse show"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                            Verificate is a platform that allows users to get certificates verified from the respective authority and store them in a decentralized manner. These certificates can then be checked for authenticity by any other organization. It uses blockchain technology to ensure that the documents have not been tampered with or altered in any way.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card accordion-item">
+                      <h2 class="accordion-header" id="headingTwo">
+                        <button
+                          type="button"
+                          class="accordion-button collapsed"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#accordionTwo"
+                          aria-expanded="false"
+                          aria-controls="accordionTwo"
+                        >
+                        How does Verificate work?
+                        </button>
+                      </h2>
+                      <div
+                        id="accordionTwo"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                            Verificate works by providing a simple and user-friendly interface where users can upload their certificates. These certificates will then be validated by the appropriate authorities and stored on the blockchain.Once a document is uploaded, the user is provided with a unique hash, which can be submitted to the interviewer to check for authenticity.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card accordion-item">
+                      <h2 class="accordion-header" id="headingThree">
+                        <button
+                          type="button"
+                          class="accordion-button collapsed"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#accordionThree"
+                          aria-expanded="false"
+                          aria-controls="accordionThree"
+                        >
+                            What types of certificates can be verified on Verificate?
+                        </button>
+                      </h2>
+                      <div
+                        id="accordionThree"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                            Verificate can verify a wide range of certificates, including internships, HSC, SSC, Transfer certificates etc.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card accordion-item">
+                      <h2 class="accordion-header" id="headingFour">
+                        <button
+                          type="button"
+                          class="accordion-button collapsed"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#accordionFour"
+                          aria-expanded="false"
+                          aria-controls="accordionFour"
+                        >
+                            Is Verificate secure?
+                        </button>
+                      </h2>
+                      <div
+                        id="accordionFour"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                            Yes, Verificate is highly secure. It uses blockchain technology to ensure that documents cannot be tampered with or altered in any way. Additionally, Verificate follows strict data protection and privacy policies to ensure that user data is kept safe and confidential.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ Accordion -->
+
+              <!--/ Advance Styling Options -->
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+        <%- include('new-ui-footer'); %>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="vendor/libs/jquery/jquery.js"></script>
+    <script src="vendor/libs/popper/popper.js"></script>
+    <script src="vendor/js/bootstrap.js"></script>
+    <script src="vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

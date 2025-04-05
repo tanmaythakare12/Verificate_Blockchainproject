@@ -1,0 +1,46 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+    </div>
+    <ul class="nav">
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="dashboard">
+                <span class="menu-icon">
+                    <i class="mdi mdi-home"></i>
+                </span>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <% if(data.role == 'verifier'){ %>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="verify-documents-page">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-upload"></i>
+                    </span>
+                    <span class="menu-title">Verify Documents</span>
+                </a>
+            </li>
+        <% } else if(data.role == 'reviewer'){ %>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="view-certificate-page">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-upload"></i>
+                    </span>
+                    <span class="menu-title">View Documents</span>
+                </a>
+            </li>
+        <% } else{ %> 
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="file-upload-page">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-upload"></i>
+                    </span>
+                    <span class="menu-title">Upload Documents</span>
+                </a>
+            </li>
+        <% } %>
+         
+    </ul>
+</nav>

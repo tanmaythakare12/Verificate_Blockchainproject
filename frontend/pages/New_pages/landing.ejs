@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style" dir="ltr" data-theme="theme-default" data-assets-path=""
+    data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Home | Verificate</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <style>
+        #google_translate_element select {
+            color: black;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 10px 1px;
+            /* margin-top: 1.5rem; */
+            font-size: 1rem;
+            background-color: #eceef1;
+        }
+
+        .goog-logo-link {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            color: transparent !important;
+        }
+
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        #goog-gt-tt,
+        .goog-te-balloon-frame {
+            display: none !important;
+        }
+
+        .goog-text-highlight {
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd {
+            display: none;
+        }
+
+        .skiptranslate {
+            color: white;
+        }
+    </style>
+
+    <!-- Helpers -->
+    <script src="vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="js/config.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light navbar-expand-md fixed-top"
+        style="padding-left: 1.5rem; padding-right: 1.5rem;">
+        <a class="navbar-brand" href="#">
+            <img src="img/favicon/logo.png" height="45" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" style="justify-content: space-between;" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <div id="google_translate_element" class="text-center navbar-nav align-items-center"></div>
+                </li>
+            </ul>
+            <div class="form-inline mt-2 mt-md-0">
+                <a class="btn btn-primary" href="/register">Sign Up</a>
+                <a class="btn btn-outline-primary" href="/login">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        .banner-img {
+            margin-top: 30px;
+        }
+
+        @media screen and (max-width: 1120px) {
+            .banner-img {
+                margin-top: 50px;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            .banner-img {
+                margin-top: 60px;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .banner-img {
+                margin-top: 70px;
+            }
+        }
+
+        @media screen and (max-width: 287px) {
+            .banner-img {
+                margin-top: 90px;
+            }
+        }
+
+        .div2 {
+            margin: 0;
+            padding: 20px 25px;
+            background-color: #696cff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .div2 h4 {
+            margin: 0;
+            color: #fff;
+        }
+
+        @media screen and (max-width: 700px) {
+            .div2 {
+                flex-direction: column;
+                padding: 30px 25px;
+            }
+
+            .div2 h4 {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .text-with-image {
+            background-color: #ffbc59;
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .text-with-image .image {
+            flex-basis: 60%;
+        }
+
+        .text-with-image .text {
+            padding-left: 20px;
+            color: white;
+        }
+
+        .text-with-image .text p {
+            font-size: 1.05rem;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .text-with-image .image {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                flex-basis: 0%;
+            }
+        }
+
+        @media screen and (max-width: 1097px) {
+            .text-with-image .image {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .text-with-image {
+                flex-direction: column;
+            }
+
+            .text-with-image .text {
+                padding-top: 1.5rem;
+            }
+        }
+
+        .avatar-lg {
+            height: 5rem;
+            width: 5rem;
+            margin: 0;
+            display: inline-block;
+            margin-bottom: 4rem;
+        }
+
+        .avatar-lg1 {
+            height: 5rem;
+            width: 5rem;
+            margin: 0;
+            display: inline-block;
+            margin-bottom: 5rem;
+        }
+
+        .avatar-title {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #1c84ee;
+            color: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            font-weight: 500;
+            height: 100%;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .bg-soft-primary {
+            background-color: rgba(28, 132, 238, .25) !important;
+        }
+
+        .display-4 {
+            font-size: calc(2.75rem + 2.7vw) !important;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+    </style>
+    <img src="img/backgrounds/Artboard 68.png" class="img-fluid banner-img" width="100%" alt="Responsive image">
+
+    <% if (errorMessage.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <%=errorMessage%>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </button>
+        </div>
+      <% } if (successMessage.length > 0) { %>
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <%=successMessage%>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </button>
+        </div>
+      <% } %>
+      
+    <div class="div2">
+        <h4>“Verificate” an efficient and transparent solution to the age-old problem of certificate verification.</h4>
+        <a class="btn btn-outline-light" style="white-space: nowrap;" href="/login">Get Started</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-12 my-5 text-with-image">
+                <div class="text">
+                    <h2 style="color: #fff;">Become a Verificate Affiliated Organization</h2>
+                    <p>Register as Verifier (Document Issuer) or Recruiter (Document Requester)</p>
+                    <button class="btn btn-light">Get Started</button>
+                </div>
+                <div class="image">
+                    <img src="img/backgrounds/Verified-rafiki.png" class="img-fluid" />
+                </div>
+            </div>
+            <div class="col-md-4 col-12 my-5 px-4" style="display: table;">
+                <div style="display: table-cell; vertical-align: middle;">
+                    <div style="font-size: 1.05rem; text-align: center;">
+                        Verificate leverages the power of blockchain technology to provide a secure and reliable way for
+                        students to store and verify their certificates. It ensures that the certificates are
+                        tamper-proof and easily accessible.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @media screen and (max-width: 768px) {
+            .stepsDiv {
+                flex-direction: column;
+            }
+
+            .iMdDisplay {
+                display: none !important;
+            }
+
+            .iOtherDisplay {
+                display: block !important;
+            }
+        }
+
+        .iMdDisplay {
+            display: block;
+        }
+
+        .iOtherDisplay {
+            display: none;
+        }
+    </style>
+    <div class="container my-4 text-center">
+        <h1 class="mb-4">Steps to get started</h1>
+        <div class="stepsDiv" style="display: flex; align-items: center; justify-content: center;">
+            <div class="avatar-lg mx-4">
+                <div class="avatar-title bg-soft-primary text-primary display-4 m-0 rounded-circle">
+                    <i class="bx bxs-user-circle" style="font-size: calc(1.475rem + 2.7vw) !important;"></i>
+                </div>
+                <p class="mt-3">Register Yourself</p>
+            </div>
+            <i class="bx bx-right-arrow-alt mx-4 iMdDisplay" style="font-size: 3rem;"></i>
+            <i class="bx bx-down-arrow-alt mx-4 iOtherDisplay" style="font-size: 3rem;"></i>
+            <div class="avatar-lg mx-4">
+                <div class="avatar-title bg-soft-primary text-primary display-4 m-0 rounded-circle">
+                    <i class="bx bx-fingerprint" style="font-size: calc(1.475rem + 2.7vw) !important;"></i>
+                </div>
+                <p class="mt-3">Verify Yourself</p>
+            </div>
+            <i class="bx bx-right-arrow-alt mx-4 iMdDisplay" style="font-size: 3rem;"></i>
+            <i class="bx bx-down-arrow-alt mx-4 iOtherDisplay" style="font-size: 3rem;"></i>
+            <div class="avatar-lg1 mx-4">
+                <div class="avatar-title bg-soft-primary text-primary display-4 m-0 rounded-circle">
+                    <i class="bx bx-upload" style="font-size: calc(1.475rem + 2.7vw) !important;"></i>
+                </div>
+                <p class="mt-3">Upload Certificates to Verify</p>
+            </div>
+            <i class="bx bx-right-arrow-alt mx-4 iMdDisplay" style="font-size: 3rem;"></i>
+            <i class="bx bx-down-arrow-alt mx-4 iOtherDisplay" style="font-size: 3rem;"></i>
+            <div class="avatar-lg1 mx-4">
+                <div class="avatar-title bg-soft-primary text-primary display-4 m-0 rounded-circle">
+                    <i class="bx bxs-certification" style="font-size: calc(1.475rem + 2.7vw) !important;"></i>
+                </div>
+                <p class="mt-3">Verified Certificate Code</p>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <!-- <section class="mb-4">
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-google"></i
+            ></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section> -->
+            <!-- Section: Social media -->
+
+            <!-- Section: Form -->
+            <section class="">
+                <form action="">
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center">
+                        <!-- <form > -->
+                        <div class="col-auto">
+                            <p class="pt-2">
+                                <strong>Sign up for our newsletter</strong>
+                            </p>
+                        </div>
+                        <div class="col-md-5 col-12">
+                            <!-- Email input -->
+                            <div class="form-outline form-white mb-4">
+                                <input type="email" id="form5Example21" class="form-control" />
+                                <label class="form-label" for="form5Example21">Email address</label>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-outline-light mb-4">
+                                Subscribe
+                            </button>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                    <!--Grid row-->
+                </form>
+            </section>
+            <!-- Section: Form -->
+
+            <!-- Section: Text -->
+            <!-- <section class="mb-4">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+              repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+              eum harum corrupti dicta, aliquam sequi voluptate quas.
+            </p>
+          </section> -->
+            <!-- Section: Text -->
+
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <!-- <h5 class="text-uppercase">Links</h5> -->
+                        <img class="img-fluid" src="img/favicon/logo.png" />
+
+                        <p class="mt-4">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem impedit, vel asperiores
+                            aliquam odio odit officiis eaque magnam ea dignissimos!
+                        </p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">&nbsp;</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <a href="javascript: void(0);" class="text-white">Home</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="javascript: void(0);" class="text-white">About Us</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="javascript: void(0);" class="text-white">FAQ's</a>
+                            </li>
+                            <!-- <li>
+                    <a href="#!" class="text-white">Link 4</a>
+                  </li> -->
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">&nbsp;</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <a href="javascript: void(0);" class="text-white">Privacy Policy</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="javascript: void(0);" class="text-white">Terms & Conditions</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="javascript: void(0);" class="text-white">Contact Us</a>
+                            </li>
+                            <!-- <li>
+                    <a href="#!" class="text-white">Link 4</a>
+                  </li> -->
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h6 class="text-uppercase fw-bold mb-4">&nbsp;</h6>
+                        <p><i class="bx bxs-map-pin 1e-3 text-secondary"></i> VESIT, Chembur, Maharashtra, India</p>
+                        <p>
+                            <i class="bx bxs-envelope me-1 text-secondary"></i>
+                            <a href="mailto:info@verificate.com" style="text-transform: none;" class="text-white">
+                                info@verificate.com
+                            </a>
+                        </p>
+                        <p><i class="bx bxs-phone me-1 text-secondary"></i><a href="tel:+919876543210" style="text-transform: none;" class="text-white"> +91 9876543210</a></p>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            ©
+            <script>document.write(new Date().getFullYear());</script> | VERIFICATE.
+
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <!-- Content -->
+
+    <!-- <h4 class="fw-bold p-4">Blank Page</h4> -->
+
+    <!-- / Content -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="vendor/libs/jquery/jquery.js"></script>
+    <script src="vendor/libs/popper/popper.js"></script>
+    <script src="vendor/js/bootstrap.js"></script>
+    <script src="vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+
+    <!-- Page JS -->
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'bn,bho,gu,hi,kn,kok,ml,mr,ne,or,pa,sa,sd,ta,te,ur,en,',
+            }, 'google_translate_element'
+            );
+        }
+    </script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

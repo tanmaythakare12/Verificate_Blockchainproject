@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Upload Certificate | Verificate</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+    
+    <style>
+        .drop-zone {
+            max-width: 100%;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            border: 4px dashed #009578;
+            border-radius: 10px;
+        }
+
+        .drop-zone--over {
+            border-style: solid;
+        }
+
+        .drop-zone__input {
+            display: none;
+        }
+
+        .drop-zone__thumb {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #cccccc;
+            background-size: cover;
+            position: relative;
+        }
+
+        .drop-zone__thumb::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_sidebar -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+                <!-- <a class="sidebar-brand brand-logo" href="dashboard"><img src="images/logo.svg"
+                        alt="logo" /></a>
+                <a class="sidebar-brand brand-logo-mini" href="dashboard"><img src="images/logo-mini.svg"
+                        alt="logo" /></a> -->
+            </div>
+            <ul class="nav">
+                <li class="nav-item nav-category">
+                    <span class="nav-link">Navigation</span>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="show-dashboard">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="show-file-upload">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-upload"></i>
+                        </span>
+                        <span class="menu-title">Upload Certificate</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_navbar -->
+            <nav class="navbar p-0 fixed-top d-flex flex-row">
+                <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                    <a class="navbar-brand brand-logo-mini" href="show-dashboard"><img
+                            src="images/logo-mini.svg" alt="logo" /></a>
+                </div>
+                <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                        data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                    <ul class="navbar-nav w-100">
+                        <li class="nav-item w-100">
+                            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                                <input type="text" class="form-control" placeholder="Search Documents">
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-nav-right">
+                        <!-- <li class="nav-item dropdown d-none d-lg-block">
+                            <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown"
+                                data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                aria-labelledby="createbuttonDropdown">
+                                <h6 class="p-3 mb-0">Projects</h6>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-file-outline text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject ellipsis mb-1">Software Development</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-web text-info"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject ellipsis mb-1">UI Development</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-layers text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject ellipsis mb-1">Software Testing</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <p class="p-3 mb-0 text-center">See all projects</p>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-settings d-none d-lg-block">
+                            <a class="nav-link" href="#">
+                                <i class="mdi mdi-view-grid"></i>
+                            </a>
+                        </li> -->
+                        <!-- <li class="nav-item dropdown border-left">
+                            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
+                                data-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-email"></i>
+                                <span class="count bg-success"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                aria-labelledby="messageDropdown">
+                                <h6 class="p-3 mb-0">Messages</h6>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face4.jpg" alt="image"
+                                            class="rounded-circle profile-pic">
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
+                                        <p class="text-muted mb-0"> 1 Minutes ago </p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face2.jpg" alt="image"
+                                            class="rounded-circle profile-pic">
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
+                                        <p class="text-muted mb-0"> 15 Minutes ago </p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face3.jpg" alt="image"
+                                            class="rounded-circle profile-pic">
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
+                                        <p class="text-muted mb-0"> 18 Minutes ago </p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <p class="p-3 mb-0 text-center">4 new messages</p>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown border-left">
+                            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                                data-toggle="dropdown">
+                                <i class="mdi mdi-bell"></i>
+                                <span class="count bg-danger"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                aria-labelledby="notificationDropdown">
+                                <h6 class="p-3 mb-0">Notifications</h6>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-calendar text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Event today</p>
+                                        <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event
+                                            today </p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-settings text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Settings</p>
+                                        <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-link-variant text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Launch Admin</p>
+                                        <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <p class="p-3 mb-0 text-center">See all notifications</p>
+                            </div>
+                        </li> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" id="profileDropdown" href="show-profile">
+                                <div class="navbar-profile">
+                                    <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="">
+                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Teesha Karotra</p>
+                                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                aria-labelledby="profileDropdown">
+                                <!-- <h6 class="p-3 mb-0">Profile</h6>
+                                <div class="dropdown-divider"></div> -->
+                                <a class="dropdown-item preview-item" href="show-profile">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-settings text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Profile</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-logout text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p onclick="location.href='do-logout'" class="preview-subject mb-1">Log out
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- <div class="dropdown-divider"></div>
+                                <p class="p-3 mb-0 text-center">Advanced settings</p> -->
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-toggle="offcanvas">
+                        <span class="mdi mdi-format-line-spacing"></span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                            <button type="button" class="close" style="margin: -17px -17px -25px auto;"
+                                data-dismiss="modal" aria-label="Close">
+                                <span style="color: grey;">&times;</span>
+                            </button>
+                        </div>
+                        <form method="POST" class="needs-validation" novalidate>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                    <div class="form-group row">
+                                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control p_input" id="username"
+                                                name="Username" pattern="[a-zA-Z0-9]{3,}"
+                                                placeholder="Enter Username">
+                                            <div class="invalid-feedback">
+                                                Please enter valid username (alphanumeric only)
+                                            </div>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control p_input" id="email" name="Email"
+                                                pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+" required
+                                                placeholder="Enter Email">
+                                            <div class="invalid-feedback">
+                                                Please enter valid email
+                                            </div>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control p_input" id="phoneNo" name="PhoneNo"
+                                                pattern="[0-9]{10}" placeholder="Enter Phone Number">
+                                            <div class="invalid-feedback">
+                                                Please enter valid phone number
+                                            </div>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        &emsp; -->
+                                        <button type="button" style="float: right;" class="btn btn-primary" onclick="editSaveProfile(this)">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <form method="post" action='do-upload-files' enctype="multipart/form-data">
+                        <div class="row" style="height: 95%;">
+                            <div class="col-12">
+                                <div class="drop-zone" id="drop-zone">
+                                    <span class="drop-zone__prompt">
+                                        <i class="mdi mdi-file-pdf" style="font-size: 4rem;"></i>
+                                        <br>
+                                        Drop file here or click to upload
+                                    </span>
+                                    <input type="file" name="MyFile" id="myFile" class="drop-zone__input">
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" id="submit-btn" class="btn btn-primary btn-block enter-btn" value="Upload"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © D12B
+                            <script>document.write(new Date().getFullYear())</script>
+                        </span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+    
+    <script>
+        function uploadFile() {
+            file = document.getElementById('myFile');
+
+        }
+
+        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            if (file.type == 'application/pdf') {
+                document.getElementById("myFile").value = null;
+                
+                // First time - remove the prompt
+                if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                    dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                }
+
+                // First time - there is no thumbnail element, so lets create it
+                if (!thumbnailElement) {
+                    thumbnailElement = document.createElement("div");
+                    thumbnailElement.classList.add("drop-zone__thumb");
+                    thumbnailElement.style.width = '200px';
+                    thumbnailElement.style.width = '200px';
+                    dropZoneElement.appendChild(thumbnailElement);
+                }
+
+                thumbnailElement.dataset.label = file.name;
+            }
+            else {
+                if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                    if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                        dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                    }
+                    const promptDiv = document.createElement('span')
+                    promptDiv.class = 'drop-zone__prompt'
+                    promptDiv.innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 4rem;"></i>
+                        <br>
+                        Drop a <strong>PDF</strong> file here or click to upload
+                    `
+                    console.log(promptDiv)
+                    document.getElementById('drop-zone').appendChild(promptDiv)
+                    // dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                }
+                else {
+                    document.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 4rem;"></i>
+                        <br>
+                        Drop a <strong>PDF</strong> file here or click to upload
+                    `
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+<!-- https://css-tricks.com/drag-and-drop-file-uploading/ -->
+
+<!-- https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/ -->
+
+<!-- https://codepen.io/dcode-software/pen/xxwpLQo -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+
+
+    </body>
+
+</html> -->

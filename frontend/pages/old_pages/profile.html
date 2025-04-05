@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Profile | Verificate</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+
+    <style>
+        .drop-zone {
+            max-width: 100%;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            border: 4px dashed #009578;
+            border-radius: 10px;
+        }
+
+        .drop-zone--over {
+            border-style: solid;
+        }
+
+        .drop-zone__input {
+            display: none;
+        }
+
+        .drop-zone__thumb {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #cccccc;
+            background-size: cover;
+            position: relative;
+        }
+
+        .drop-zone__thumb::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_sidebar -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+                <!-- <a class="sidebar-brand brand-logo" href="dashboard"><img src="images/logo.svg"
+                        alt="logo" /></a>
+                <a class="sidebar-brand brand-logo-mini" href="dashboard"><img src="images/logo-mini.svg"
+                        alt="logo" /></a> -->
+            </div>
+            <ul class="nav">
+                <li class="nav-item nav-category">
+                    <span class="nav-link">Navigation</span>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="show-dashboard">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="show-file-upload">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-upload"></i>
+                        </span>
+                        <span class="menu-title">Upload Certificate</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_navbar -->
+            <nav class="navbar p-0 fixed-top d-flex flex-row">
+                <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                    <a class="navbar-brand brand-logo-mini" href="show-dashboard"><img
+                            src="images/logo-mini.svg" alt="logo" /></a>
+                </div>
+                <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                        data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                    <ul class="navbar-nav w-100">
+                        <li class="nav-item w-100">
+                            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                                <input type="text" class="form-control" placeholder="Search Documents">
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                                <div class="navbar-profile">
+                                    <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="">
+                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Teesha Karotra</p>
+                                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                aria-labelledby="profileDropdown">
+                                <!-- <h6 class="p-3 mb-0">Profile</h6>
+                                <div class="dropdown-divider"></div> -->
+                                <a class="dropdown-item preview-item" data-toggle="modal" data-target="#exampleModal">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-settings text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Profile</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-logout text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p onclick="location.href='do-logout'" class="preview-subject mb-1">Log out
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- <div class="dropdown-divider"></div>
+                                <p class="p-3 mb-0 text-center">Advanced settings</p> -->
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-toggle="offcanvas">
+                        <span class="mdi mdi-format-line-spacing"></span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-4 col-12 mb-4">
+                            <div class="form-group">
+                              <label>Username <span style="color: red;"> *</span></label>
+                              <input type="text" class="form-control p_input" id="username" name="Username" pattern="[a-zA-Z0-9]{3,}" required placeholder="Enter Username">
+                              <div class="invalid-feedback">
+                                Please enter valid username (alphanumeric only)
+                              </div>
+                              <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-4">
+                            <div class="form-group">
+                              <label>Email <span style="color: red;"> *</span></label>
+                              <input type="email" class="form-control p_input" id="email" name="Email" pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+" required placeholder="Enter Email">
+                              <div class="invalid-feedback">
+                                Please enter valid email
+                              </div>
+                              <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-4">
+                            <div class="form-group">
+                              <label>Phone Number</label>
+                              <input type="text" class="form-control p_input" id="phoneNo" name="PhoneNo" pattern="[0-9]{10}" placeholder="Enter Phone Number">
+                              <div class="invalid-feedback">
+                                Please enter valid phone number
+                              </div>
+                              <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-4">
+                            <div class="form-group">
+                              <label>Colleges & Universities Previously Attended <span style="color: red;"> *</span></label>
+                              <select class="js-example-basic-multiple" id="universities" name="Universities" multiple="multiple" required style="width:100%">
+                                <option>Acharya Nagarjuna University</option>
+                                <option>Anna University, Chennai</option>
+                                <option>Barkatullah University, Bhopal</option>
+                                <option>Bharati Vidyapeeth, Pune</option>
+                                <option>Gujarat Technological University, Ahmedbabd</option>
+                                <option>Indian Institute of Technology, Roorkee</option>
+                                <option>Jawaharlal Nehru Technological University, Kakinada</option>
+                                <option>Maharashtra State Board for Secondary & Higher Education</option>
+                                <option>Mumbai University, Mumbai</option>
+                              </select>
+                              <div class="invalid-feedback">
+                                Please select colleges & universities
+                              </div>
+                              <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-4">
+                            <div class="form-group">
+                              <label>Colleges & Universities Previously Attended <span style="color: red;"> *</span></label>
+                                <div class="drop-zone" id="drop-zone">
+                                    <span class="drop-zone__prompt">
+                                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                                        <br>
+                                        Drop profile photo here
+                                    </span>
+                                    <input type="file" name="File1" id="file1" class="drop-zone__input"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>My Documents</h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-dark">
+                                        <thead>
+                                            <tr style="border-top: 1px solid #454d55;">
+                                                <th>Sr. No.</th>
+                                                <th>Document Hash</th>
+                                                <th>Document Name</th>
+                                                <th>Document Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1rjghrkujfhr18u4jwih3i2784tgw</td>
+                                                <td>SSC Certificate</td>
+                                                <td>SSC Certificate by Maharashtra State Board</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © D12B
+                            <script>document.write(new Date().getFullYear())</script>
+                        </span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/select2/select2.min.js"></script>
+    <script src="vendors/progressbar.js/progressbar.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="js/select2.js"></script>
+    <!-- End custom js for this page -->
+
+    
+    <script>
+        function intializeDragDrop() {
+            /* document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+                console.log(inputElement)
+                const dropZoneElement = inputElement.closest(".drop-zone");
+    
+                dropZoneElement.addEventListener("click", (e) => {
+                    inputElement.click();
+                });
+    
+                inputElement.addEventListener("change", (e) => {
+                    if (inputElement.files.length) {
+                        updateThumbnail(dropZoneElement, inputElement.files[0]);
+                    }
+                });
+    
+                dropZoneElement.addEventListener("dragover", (e) => {
+                    e.preventDefault();
+                    dropZoneElement.classList.add("drop-zone--over");
+                });
+    
+                ["dragleave", "dragend"].forEach((type) => {
+                    dropZoneElement.addEventListener(type, (e) => {
+                        dropZoneElement.classList.remove("drop-zone--over");
+                    });
+                });
+    
+                dropZoneElement.addEventListener("drop", (e) => {
+                    e.preventDefault();
+    
+                    if (e.dataTransfer.files.length) {
+                        inputElement.files = e.dataTransfer.files;
+                        updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                    }
+    
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            }); */
+
+            var inputElement = document.querySelectorAll(".drop-zone__input")[document.querySelectorAll(".drop-zone__input").length - 1]
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        }
+
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            console.log(file.type)
+            if (file.type == 'application/pdf') {
+                const size = Math.round((file.size / 1024));
+                // The size of the file.
+                if (size >= 2048) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                    }
+                }
+                else if (size < 150) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                    }
+                }
+                else {
+
+                    // First time - remove the prompt
+                    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                    }
+                    // First time - there is no thumbnail element, so lets create it
+                    if (!thumbnailElement) {
+                        thumbnailElement = document.createElement("div");
+                        thumbnailElement.classList.add("drop-zone__thumb");
+                        thumbnailElement.style.width = '200px';
+                        thumbnailElement.style.width = '200px';
+                        dropZoneElement.appendChild(thumbnailElement);
+                    }
+                    thumbnailElement.dataset.label = file.name;
+
+                    if (dropZoneElement.querySelector('span')) {
+                        dropZoneElement.querySelector('span').remove();
+                    }
+                    console.log(dropZoneElement.querySelector('input').value)
+                }
+            }
+            else {
+                dropZoneElement.querySelector('input').value = '';
+                if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                    if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                        dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                    }
+                    const promptDiv = document.createElement('span')
+                    promptDiv.class = 'drop-zone__prompt'
+                    promptDiv.innerHTML = `
+                    <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                    console.log(promptDiv)
+                    dropZoneElement.appendChild(promptDiv)
+                }
+                else {
+                    dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                    <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                }
+            }
+        }
+
+        intializeDragDrop();
+    </script>
+
+
+
+</body>
+
+</html>

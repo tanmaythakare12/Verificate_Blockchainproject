@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register | Verificate</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+
+    <style>
+      .select2-selection--multiple {
+        background: #2A3038 !important;
+        max-height: 6rem;
+        overflow-y: auto;
+      }
+      .select2-selection--multiple::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      /* Track */
+      .select2-selection--multiple::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      /* Handle */
+      .select2-selection--multiple::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 2.5px;
+      }
+
+      /* Handle on hover */
+      .select2-selection--multiple::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-xl-8 col-lg-10 col-md-12 mx-auto">
+              <div class="card-body px-5 py-5">
+                <h3 class="card-title text-center mb-4">Register</h3>
+                <form method="POST" action='do-register' class="needs-validation" novalidate>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Username <span style="color: red;"> *</span></label>
+                        <input type="text" class="form-control p_input" id="username" name="Username" pattern="[a-zA-Z0-9]{3,}" required placeholder="Enter Username">
+                        <div class="invalid-feedback">
+                          Please enter valid username (alphanumeric only)
+                        </div>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Email <span style="color: red;"> *</span></label>
+                        <input type="email" class="form-control p_input" id="email" name="Email" pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+" required placeholder="Enter Email">
+                        <div class="invalid-feedback">
+                          Please enter valid email
+                        </div>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control p_input" id="phoneNo" name="PhoneNo" pattern="[0-9]{10}" placeholder="Enter Phone Number">
+                        <div class="invalid-feedback">
+                          Please enter valid phone number
+                        </div>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Colleges & Universities Previously Attended <span style="color: red;"> *</span></label>
+                        <select class="js-example-basic-multiple" id="universities" name="Universities" multiple="multiple" required style="width:100%">
+                        </select>
+                        <div class="invalid-feedback">
+                          Please select colleges & universities
+                        </div>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Password <span style="color: red;"> *</span></label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <input type="password" class="form-control p_input" id="password" name="Password" pattern="(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" required placeholder="Enter Password">
+                          <div class="input-group-append" id="togglePassword">
+                            <div class="input-group-text"><i class="mdi mdi-eye-off"></i></div>
+                          </div>
+                          <div class="invalid-feedback">
+                            Please enter password
+                          </div>
+                          <div class="valid-feedback">
+                            Looks good!
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Confirm Password <span style="color: red;"> *</span></label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <input type="password" class="form-control p_input" id="confirmPassword" name="ConfirmPassword" pattern="(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" required placeholder="Confirm Password">
+                          <div class="input-group-append" id="toggleConfirmPassword">
+                            <div class="input-group-text"><i class="mdi mdi-eye-off"></i></div>
+                          </div>
+                          <div class="invalid-feedback" style="display: block;" id="confirmPasswordErrorMessage"></div>
+                          <!-- <div class="valid-feedback">
+                            Looks good!
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group d-flex align-items-center justify-content-between" style="color: rgb(255, 86, 86);">
+                    <small>Password must contain atleast 1 uppercase alphabet, 1 lowercase alphabet, 1 number & 1 special character (!, @, #, $, %, ^, &, *)</small>
+                  </div>
+                  <br>
+                  <div class="row mx-auto">
+                    <div class="col-sm-3 col-0">
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <button type="submit" id="submit-btn" class="btn btn-primary btn-block enter-btn" disabled>Register</button>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                  </div>
+                  <p class="sign-up text-center">Already have an Account?<a href="login"> Sign In</a></p>
+                  <!-- <p class="terms">By creating an account you are accepting our<a href="javascript: void(0);"> Terms & Conditions</a></p> -->
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/select2/select2.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <script src="js/select2.js"></script>
+
+
+    <script>
+      const togglePassword = document.querySelector("#togglePassword");
+      const password = document.querySelector("#password");
+      const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
+      const confirmPassword = document.querySelector("#confirmPassword");
+
+      togglePassword.addEventListener("click", function () {
+          if (password.getAttribute("type") == "password") {
+            password.setAttribute("type", "text");
+            this.querySelector('i').classList.remove("mdi-eye-off");
+            this.querySelector('i').classList.add("mdi-eye");
+          }
+          else {
+            password.setAttribute("type", "password");
+            this.querySelector('i').classList.remove("mdi-eye");
+            this.querySelector('i').classList.add("mdi-eye-off");
+          }
+      });
+      
+      toggleConfirmPassword.addEventListener("click", function () {
+          if (confirmPassword.getAttribute("type") == "password") {
+            confirmPassword.setAttribute("type", "text");
+            this.querySelector('i').classList.remove("mdi-eye-off");
+            this.querySelector('i').classList.add("mdi-eye");
+          }
+          else {
+            confirmPassword.setAttribute("type", "password");
+            this.querySelector('i').classList.remove("mdi-eye");
+            this.querySelector('i').classList.add("mdi-eye-off");
+          }
+      });
+
+      password.addEventListener("input", function() {
+        checkPasswordMatch();
+      })
+      confirmPassword.addEventListener("input", function() {
+        checkPasswordMatch();
+      })
+    </script>
+
+    <script>
+      function checkPasswordMatch() {
+        if (password.value != confirmPassword.value) {
+          document.querySelector('#confirmPasswordErrorMessage').innerHTML = 'Password & Confirm Password do not match';
+          document.getElementById('submit-btn').disabled = true
+        }
+        else {
+          document.querySelector('#confirmPasswordErrorMessage').innerHTML = '';
+          document.getElementById('submit-btn').disabled = false
+        }
+      }
+    </script>
+
+    <script>
+      (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+          })
+      })()
+    </script>
+
+  </body>
+</html>

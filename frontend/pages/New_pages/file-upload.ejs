@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path=""
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Upload Certificates | Verificate</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="vendor/fonts/boxicons.css" />
+
+    <link rel="stylesheet" href="vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="js/config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+    
+    <style>
+        .swal2-popup {
+            background: #30373f !important;
+            color: #ced4da !important;
+        }
+
+        hr.my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important;
+            border: 0;
+            border-top: 1px solid;
+            opacity: .2;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .drop-zone {
+            max-width: 100%;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            border: 4px dashed #009578;
+            border-radius: 10px;
+        }
+
+        .drop-zone--over {
+            border-style: solid;
+        }
+
+        .drop-zone__input {
+            display: none;
+        }
+
+        .drop-zone__thumb {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #cccccc;
+            background-size: cover;
+            position: relative;
+        }
+
+        .drop-zone__thumb::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <%- include('new-ui-sidebar'); %>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+          <%- include('new-ui-navbar'); %>
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4">
+                <!-- <span class="text-muted fw-light">UI elements /</span> -->
+                File Upload
+              </h4>
+
+              <div class="bs-toast toast toast-placement-ex m-2" id="toast1" role="alert"
+              aria-live="assertive" data-bs-autohide="false">
+              <div class="toast-header">
+                  <i class="bx bx-bell me-2"></i>
+                  <div class="me-auto fw-semibold" id="toastHeader">Welcome to Verificate</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body" id="toastContent">A platform for verifying, storing, and accessing certificates in a secure environment. I'm ETHan, your tour guide, and I'll walk you around the website. So let's get started.</div>
+            </div>
+
+            <input type="hidden" id="selectTypeOpt" />
+            <input type="hidden" id="selectPlacement" />
+            <input type="hidden" id="showToastPlacement" />
+
+              <!-- Collapse -->
+              <!-- <h5>Collapse</h5> -->
+              <div class="row">
+                <div class="col-12">
+                    <% if (errorMessage.length > 0) { %>
+                      <div class="alert alert-danger alert-dismissible" role="alert">
+                        <%=errorMessage%>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        </button>
+                      </div>
+                    <% } if (successMessage.length > 0) { %>
+                      <div class="alert alert-success alert-dismissible" role="alert">
+                        <%=successMessage%>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        </button>
+                      </div>
+                    <% } %>
+                  <div class="card mb-4">
+                    <!-- <h5 class="card-header">Basic</h5> -->
+                    <div class="card-body">
+                        <form action="upload-files" method="POST" class="needs-validation" id="form1" enctype="multipart/form-data" novalidate>
+                            <div id="InputArea">
+                                <br>
+                                <div id="fileRow1">
+                                    <!-- <hr class="my-5"> -->
+                                    <div class="row">
+                                        <div class="col-xl-3 col-lg-4 col-sm-6 mb-4">
+                                            <div class="drop-zone" id="drop-zone">
+                                                <span class="drop-zone__prompt">
+                                                    <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                                                    <br>
+                                                    Drop file here or click to upload
+                                                </span>
+                                                <input type="file" name="File1" id="file1" class="drop-zone__input"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-6 mb-4">
+                                            <div class="form-group">
+                                                <label>File Description <span style="color: red;"> *</span></label>
+                                                <textarea class="form-control" name="Description1" id="description1"
+                                                    rows="8" placeholder="Enter File Description" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-3 col-sm-6 mb-4">
+                                            <div class="form-group">
+                                                <label>Authorizing University <span style="color: red;"> *</span></label>
+                                                <select class="form-control" name="University1" id="university1" required>
+                                                    <option selected disabled value="">-- Authorizing University --</option>
+                                                    <option selected disabled value="">-- Authorizing University --</option>
+                                                    <option>Bharati Vidyapeeth</option>
+                                                    <option>Central Institute of Fisheries Education</option>
+                                                    <option>D. Y. Patil Education Society</option>
+                                                    <option>Dnyaneshwar Vidyapeeth Educational trust</option>
+                                                    <option>Homi Bhabha National Institute</option>
+                                                    <option>Maharashtra University of Health Sciences</option>
+                                                    <option>Narsee Monjee Institute of Management Studies</option>
+                                                    <option>Pravara Institute of Medical Sciences</option>
+                                                    <option>Solapur University</option>
+                                                    <option>Symbiosis International University</option>
+                                                    <option>Tata Institute of Fundamental Research</option>
+                                                    <option>Tata Institute of Social Sciences</option>
+                                                    <option>Tilak Maharashtra University</option>
+                                                    <option>University of Mumbai</option>
+                                                    <option>Savitribai Phule Pune University</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1 col-sm-6 mb-4"
+                                            style="display: flex; align-items: baseline; justify-content: space-around;">
+                                            <button type="button" class="btn btn-danger btn-rounded btn-icon"
+                                                onclick="deleteRowSA('1')">
+                                                <i class="bx bx-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button type="button" class="btn btn-primary btn-icon-text" onclick="addRow()">
+                                        <i class="bx bxs-file-plus btn-icon-prepend"></i> Add File
+                                    </button>&emsp;
+                                    <button type="submit" class="btn btn-primary btn-icon-text">
+                                        <i class="bx bx-arrow-from-bottom btn-icon-prepend"></i> Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+        <%- include('new-ui-footer'); %>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- <div class="buy-now">
+      <a
+        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
+        target="_blank"
+        class="btn btn-danger btn-buy-now"
+        >Upgrade to Pro</a
+      >
+    </div> -->
+
+    <script src="js/ui-toasts.js"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="vendor/libs/jquery/jquery.js"></script>
+    <script src="vendor/libs/popper/popper.js"></script>
+    <script src="vendor/js/bootstrap.js"></script>
+    <script src="vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+
+    <!-- Page JS -->
+
+    
+
+    <script>
+        var counter = 1;
+        function addRow() {
+            counter++;
+            var innerContent = `
+                <hr class="my-4">
+                <div id="fileRow${counter}">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-sm-6 my-4">
+                            <div class="drop-zone" id="drop-zone">
+                                <span class="drop-zone__prompt">
+                                    <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                                    <br>
+                                    Drop file here or click to upload
+                                </span>
+                                <input type="file" name="File${counter}" id="file${counter}" class="drop-zone__input" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 my-4">
+                            <div class="form-group">
+                                <label>File Description</label>
+                                <textarea class="form-control" name="Description${counter}" id="description${counter}" rows="8"
+                                    placeholder="Enter File Description" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-3 col-sm-6 my-4">
+                            <div class="form-group">
+                                <label>Authorizing University</label>
+                                <select class="form-control" name="University${counter}" id="university${counter}" required>
+                                    <option selected disabled value="">-- Authorizing University --</option>
+                                    <option>Bharati Vidyapeeth</option>
+                                    <option>Central Institute of Fisheries Education</option>
+                                    <option>D. Y. Patil Education Society</option>
+                                    <option>Dnyaneshwar Vidyapeeth Educational trust</option>
+                                    <option>Homi Bhabha National Institute</option>
+                                    <option>Maharashtra University of Health Sciences</option>
+                                    <option>Narsee Monjee Institute of Management Studies</option>
+                                    <option>Pravara Institute of Medical Sciences</option>
+                                    <option>Solapur University</option>
+                                    <option>Symbiosis International University</option>
+                                    <option>Tata Institute of Fundamental Research</option>
+                                    <option>Tata Institute of Social Sciences</option>
+                                    <option>Tilak Maharashtra University</option>
+                                    <option>University of Mumbai</option>
+                                    <option>Savitribai Phule Pune University</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-sm-6 my-4"
+                            style="display: flex; align-items: baseline; justify-content: space-around;">
+                            <button type="button" class="btn btn-danger btn-rounded btn-icon"
+                                onclick="deleteRowSA('${counter}')">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `
+            $('#InputArea').append(innerContent);
+            intializeDragDrop();
+        }
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success ml-2',
+                cancelButton: 'btn btn-danger mr-2'
+            },
+            buttonsStyling: false
+        })
+
+        function deleteRowSA(val) {
+            // Swal.fire({
+            //     title: "Are you sure?",
+            //     text: "You won't be able to revert this!",
+            //     icon: "warning",
+            //     showCancelButton: !0,
+            //     confirmButtonText: "Yes, delete it!",
+            //     cancelButtonText: "No, cancel!",
+            //     confirmButtonClass: "btn btn-success",
+            //     cancelButtonClass: "btn btn-danger",
+            //     buttonsStyling: !1
+            // }).then(function (e) {
+            //     e.value ? Swal.fire({
+            //         title: "Deleted!",
+            //         text: "Your certificate entry has been deleted.",
+            //         icon: "success",
+            //         confirmButtonColor: "#1c84ee",
+            //         timer: 1000,
+            //     }).then(function () {
+            //         deleteRow(val);
+            //     }) : e.dismiss === Swal.DismissReason.cancel && Swal.fire({
+            //         title: "Cancelled",
+            //         text: "Your certificate entry is safe :)",
+            //         icon: "error",
+            //         confirmButtonColor: "#1c84ee",
+            //         timer: 1000,
+            //     })
+            // })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire({
+                        title: 'Deleted!',
+                        text: 'Your certificate entry has been deleted.',
+                        icon: 'success',
+                        timer: 1500
+                    }).then(function () {
+                        deleteRow(val);
+                    })
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire({
+                        title: 'Cancelled',
+                        text: 'Your certificate entry is safe :)',
+                        icon: 'error',
+                        timer: 1500
+                    })
+                }
+            })
+        }
+
+        function deleteRow(val) {
+            document.getElementById(`fileRow${val}`).remove()
+        }
+    </script>
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        else {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        var inputs = document.querySelectorAll('[type="file"]'), flag = false, fileID;
+                        for (var i = 0; i < inputs.length; i++) {
+                            if (inputs[i].value == "") {
+                                flag = false;
+                                fileID = i + 1;
+                                break;
+                            }
+                            else {
+                                flag = true;
+                            }
+                        }
+                        if (flag == true) {
+                            console.log('flag')
+                            $("#form1").trigger('submit', [true]);
+                        }
+                        else {
+                            console.log('srbgsre')
+                            $('#InputArea').prepend(`
+                              <div class="alert alert-danger alert-dismissible" role="alert">
+                                Please add a file in row ${fileID} 
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                </button>
+                              </div>
+                            `)
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <script>
+        function intializeDragDrop() {
+            /* document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+                console.log(inputElement)
+                const dropZoneElement = inputElement.closest(".drop-zone");
+    
+                dropZoneElement.addEventListener("click", (e) => {
+                    inputElement.click();
+                });
+    
+                inputElement.addEventListener("change", (e) => {
+                    if (inputElement.files.length) {
+                        updateThumbnail(dropZoneElement, inputElement.files[0]);
+                    }
+                });
+    
+                dropZoneElement.addEventListener("dragover", (e) => {
+                    e.preventDefault();
+                    dropZoneElement.classList.add("drop-zone--over");
+                });
+    
+                ["dragleave", "dragend"].forEach((type) => {
+                    dropZoneElement.addEventListener(type, (e) => {
+                        dropZoneElement.classList.remove("drop-zone--over");
+                    });
+                });
+    
+                dropZoneElement.addEventListener("drop", (e) => {
+                    e.preventDefault();
+    
+                    if (e.dataTransfer.files.length) {
+                        inputElement.files = e.dataTransfer.files;
+                        updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                    }
+    
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            }); */
+
+            var inputElement = document.querySelectorAll(".drop-zone__input")[document.querySelectorAll(".drop-zone__input").length - 1]
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        }
+
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            console.log(file.type)
+            if (file.type == 'application/pdf') {
+                const size = Math.round((file.size / 1024));
+                // The size of the file.
+                if (size >= 2048) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                    }
+                }
+                else if (size < 150) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                    }
+                }
+                else {
+
+                    // First time - remove the prompt
+                    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                    }
+                    // First time - there is no thumbnail element, so lets create it
+                    if (!thumbnailElement) {
+                        thumbnailElement = document.createElement("div");
+                        thumbnailElement.classList.add("drop-zone__thumb");
+                        thumbnailElement.style.width = '200px';
+                        thumbnailElement.style.width = '200px';
+                        dropZoneElement.appendChild(thumbnailElement);
+                    }
+                    thumbnailElement.dataset.label = file.name;
+
+                    if (dropZoneElement.querySelector('span')) {
+                        dropZoneElement.querySelector('span').remove();
+                    }
+                    console.log(dropZoneElement.querySelector('input').value)
+                }
+            }
+            else {
+                dropZoneElement.querySelector('input').value = '';
+                if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                    if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                        dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                    }
+                    const promptDiv = document.createElement('span')
+                    promptDiv.class = 'drop-zone__prompt'
+                    promptDiv.innerHTML = `
+                    <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                    console.log(promptDiv)
+                    dropZoneElement.appendChild(promptDiv)
+                }
+                else {
+                    dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                    <i class="bx bxs-file-pdf mb-2" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                }
+            }
+        }
+
+        intializeDragDrop();
+    </script>
+
+<script>
+    function setWithExpiry(value) {
+        const now = new Date();
+        const ttl = 1000 * 60 * 60 * 24 * 365;
+        const item = {
+            value: value,
+            expiry: now.getTime() + ttl,
+        }
+        localStorage.setItem('fileUploadPreview', JSON.stringify(item))
+        console.log(localStorage.getItem('fileUploadPreview'))
+    }
+    function getWithExpiry() {
+        const itemStr = localStorage.getItem('fileUploadPreview')
+        if (!itemStr) {
+            return null
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+        if (now.getTime() > item.expiry) {
+            localStorage.removeItem('fileUploadPreview')
+            return null
+        }
+        return item.value
+    }
+
+    $(document).ready(function () {
+        const count = getWithExpiry();
+        console.log(count)
+        if (typeof (count) != 'number') {
+            setWithExpiry(1);
+            document.querySelector('#selectTypeOpt').value = 'bg-primary';
+            document.querySelector('#selectPlacement').value = 'top-0 start-50 translate-middle-x';
+            var toastCount = 2;
+            $('#showToastPlacement').click();
+        }
+    })
+    </script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+  </body>
+</html>

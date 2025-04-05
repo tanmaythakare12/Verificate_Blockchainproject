@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Upload Certificate | Verificate</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+
+    <style>
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .swal2-popup {
+            background: #30373f !important;
+            color: #ced4da !important;
+        }
+
+        hr.my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important;
+            border: 0;
+            border-top: 1px solid;
+            opacity: .2;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .drop-zone {
+            max-width: 100%;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            border: 4px dashed #009578;
+            border-radius: 10px;
+        }
+
+        .drop-zone--over {
+            border-style: solid;
+        }
+
+        .drop-zone__input {
+            display: none;
+        }
+
+        .drop-zone__thumb {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #cccccc;
+            background-size: cover;
+            position: relative;
+        }
+
+        .drop-zone__thumb::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px 0;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_sidebar -->
+        
+        <%- include('sidebar'); %>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_navbar -->
+            <%- include('navbar'); %>
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <form action="/upload-files" method="POST" class="needs-validation" id="form1" enctype="multipart/form-data" novalidate>
+                        <div id="InputArea">
+                            <br><br>
+                            <div id="fileRow1">
+                                <!-- <hr class="my-5"> -->
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-4 col-sm-6 mb-4">
+                                        <div class="drop-zone" id="drop-zone">
+                                            <span class="drop-zone__prompt">
+                                                <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                                                <br>
+                                                Drop file here or click to upload
+                                            </span>
+                                            <input type="file" name="File1" id="file1" class="drop-zone__input"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6 mb-4">
+                                        <div class="form-group">
+                                            <label>File Description <span style="color: red;"> *</span></label>
+                                            <textarea class="form-control" name="Description1" id="description1"
+                                                rows="8" placeholder="Enter File Description" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-3 col-sm-6 mb-4">
+                                        <div class="form-group">
+                                            <label>Authorizing University <span style="color: red;"> *</span></label>
+                                            <select class="form-control" name="University1" id="university1" required>
+                                                <option selected disabled value="">-- Authorizing University --</option>
+                                                <% for (var i = 0; i < data.university.length; i++) {%>
+                                                    <option><%=data.university[i].name%></option>
+                                                <%}%>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-sm-6 mb-4"
+                                        style="display: flex; align-items: baseline; justify-content: space-around;">
+                                        <button type="button" class="btn btn-danger btn-rounded btn-icon"
+                                            onclick="deleteRowSA('1')">
+                                            <i class="mdi mdi-window-close"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <button type="button" class="btn btn-primary btn-icon-text" onclick="addRow()">
+                                    <i class="mdi mdi-plus-circle-outline btn-icon-prepend"></i> Add File
+                                </button>&emsp;
+                                <button type="submit" class="btn btn-primary btn-icon-text">
+                                    <i class="mdi mdi-upload btn-icon-prepend"></i> Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © D12B
+                            <script>document.write(new Date().getFullYear())</script>
+                        </span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/progressbar.js/progressbar.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+
+    <script src="vendors/sweetalert/sweetalert.min.js"></script>
+
+
+    <script>
+        var counter = 1;
+        function addRow() {
+            counter++;
+            var innerContent = `
+                <div id="fileRow${counter}">
+                    <hr class="my-5">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-sm-6 mb-4">
+                            <div class="drop-zone" id="drop-zone">
+                                <span class="drop-zone__prompt">
+                                    <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                                    <br>
+                                    Drop file here or click to upload
+                                </span>
+                                <input type="file" name="File${counter}" id="file${counter}" class="drop-zone__input" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 mb-4">
+                            <div class="form-group">
+                                <label>File Description</label>
+                                <textarea class="form-control" name="Description${counter}" id="description${counter}" rows="8"
+                                    placeholder="Enter File Description" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-3 col-sm-6 mb-4">
+                            <div class="form-group">
+                                <label>Authorizing University</label>
+                                <select class="form-control" name="University${counter}" id="university${counter}" required>
+                                    <option selected disabled value="">-- Authorizing University --</option>
+                                    <option>Mumbai University (MU)</option>
+                                    <option>Gujarat University</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-sm-6 mb-4"
+                            style="display: flex; align-items: baseline; justify-content: space-around;">
+                            <button type="button" class="btn btn-danger btn-rounded btn-icon"
+                                onclick="deleteRowSA('${counter}')">
+                                <i class="mdi mdi-window-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `
+            $('#InputArea').append(innerContent);
+            intializeDragDrop();
+        }
+
+        function deleteRowSA(val) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                confirmButtonClass: "btn btn-success",
+                cancelButtonClass: "btn btn-danger",
+                buttonsStyling: !1
+            }).then(function (e) {
+                e.value ? Swal.fire({
+                    title: "Deleted!",
+                    text: "Your entry has been deleted.",
+                    icon: "success",
+                    confirmButtonColor: "#1c84ee",
+                    timer: 1000,
+                }).then(function () {
+                    deleteRow(val);
+                }) : e.dismiss === Swal.DismissReason.cancel && Swal.fire({
+                    title: "Cancelled",
+                    text: "Your certificate entry is safe :)",
+                    icon: "error",
+                    confirmButtonColor: "#1c84ee",
+                    timer: 1000,
+                })
+            })
+        }
+
+        function deleteRow(val) {
+            document.getElementById(`fileRow${val}`).remove()
+        }
+    </script>
+
+    <script>
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                            var inputs = document.querySelectorAll('[type="file"]'), flag = false, fileID;
+                            for (var i = 0; i < inputs.length; i++) {
+                                if (inputs[i].value == "") {
+                                    flag = false;
+                                    fileID = i + 1;
+                                    break;
+                                }
+                                else {
+                                    flag = true;
+                                }
+                            }
+                            if (flag == true) {
+                                console.log('flag')
+                                $("#form1").trigger('submit', [true]);
+                            }
+                            else {
+                                console.log('srbgsre')
+                                $('#InputArea').prepend(`
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        Please add a file in row ${fileID} 
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                `)
+                            }
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <script>
+        function intializeDragDrop() {
+            /* document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+                console.log(inputElement)
+                const dropZoneElement = inputElement.closest(".drop-zone");
+    
+                dropZoneElement.addEventListener("click", (e) => {
+                    inputElement.click();
+                });
+    
+                inputElement.addEventListener("change", (e) => {
+                    if (inputElement.files.length) {
+                        updateThumbnail(dropZoneElement, inputElement.files[0]);
+                    }
+                });
+    
+                dropZoneElement.addEventListener("dragover", (e) => {
+                    e.preventDefault();
+                    dropZoneElement.classList.add("drop-zone--over");
+                });
+    
+                ["dragleave", "dragend"].forEach((type) => {
+                    dropZoneElement.addEventListener(type, (e) => {
+                        dropZoneElement.classList.remove("drop-zone--over");
+                    });
+                });
+    
+                dropZoneElement.addEventListener("drop", (e) => {
+                    e.preventDefault();
+    
+                    if (e.dataTransfer.files.length) {
+                        inputElement.files = e.dataTransfer.files;
+                        updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                    }
+    
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            }); */
+
+            var inputElement = document.querySelectorAll(".drop-zone__input")[document.querySelectorAll(".drop-zone__input").length - 1]
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        }
+
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            console.log(file.type)
+            if (file.type == 'application/pdf') {
+                const size = Math.round((file.size / 1024));
+                // The size of the file.
+                if (size >= 2048) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&lt; 2MB</strong>
+                    `
+                    }
+                }
+                else if (size < 150) {
+                    dropZoneElement.querySelector('input').value = '';
+                    if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                            dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                        }
+                        const promptDiv = document.createElement('span')
+                        promptDiv.class = 'drop-zone__prompt'
+                        promptDiv.innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                        console.log(promptDiv)
+                        dropZoneElement.appendChild(promptDiv)
+                    }
+                    else {
+                        dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                        <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                        <br>
+                        File size must be <strong>&gt; 150KB</strong>
+                    `
+                    }
+                }
+                else {
+
+                    // First time - remove the prompt
+                    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                    }
+                    // First time - there is no thumbnail element, so lets create it
+                    if (!thumbnailElement) {
+                        thumbnailElement = document.createElement("div");
+                        thumbnailElement.classList.add("drop-zone__thumb");
+                        thumbnailElement.style.width = '200px';
+                        thumbnailElement.style.width = '200px';
+                        dropZoneElement.appendChild(thumbnailElement);
+                    }
+                    thumbnailElement.dataset.label = file.name;
+
+                    if (dropZoneElement.querySelector('span')) {
+                        dropZoneElement.querySelector('span').remove();
+                    }
+                    console.log(dropZoneElement.querySelector('input').value)
+                }
+            }
+            else {
+                dropZoneElement.querySelector('input').value = '';
+                if (!dropZoneElement.querySelector(".drop-zone__prompt")) {
+                    if (dropZoneElement.querySelector(".drop-zone__thumb")) {
+                        dropZoneElement.querySelector(".drop-zone__thumb").remove();
+                    }
+                    const promptDiv = document.createElement('span')
+                    promptDiv.class = 'drop-zone__prompt'
+                    promptDiv.innerHTML = `
+                    <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                    console.log(promptDiv)
+                    dropZoneElement.appendChild(promptDiv)
+                }
+                else {
+                    dropZoneElement.querySelector('.drop-zone__prompt').innerHTML = `
+                    <i class="mdi mdi-file-pdf" style="font-size: 3rem;"></i>
+                    <br>
+                    Drop a <strong>PDF</strong> file here or click to upload
+                `
+                }
+            }
+        }
+
+        intializeDragDrop();
+    </script>
+
+</body>
+
+</html>
